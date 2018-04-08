@@ -48,6 +48,9 @@ Snake& Snake::operator=(const Snake& other) {
 		curr = curr->next;
 		other_body = other_body->next;
 	}
+    
+    snake_body.clear();
+    current_direction_ = RIGHT;
 
 	return *this;
 }

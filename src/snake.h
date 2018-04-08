@@ -1,4 +1,4 @@
-#include "ll.h"
+#include "ref_ll.h"
 #include "ofMain.h"
 #include "snakebody.h"
 #pragma once
@@ -38,7 +38,7 @@ private:
 	SnakeBody* head_; // The head of the linked list, we are forced to do this because snakebody 
 	                  // does not support all of the data we must keep track of
     
-	LinkedList snake_body; // our linked list implementation, we might as well use it to keep track of score
+	LinkedList<SnakeBodySegment> snake_body; // our linked list implementation, we might as well use it to keep track of score
 	                       // But ideally it should store all of the information of our snake once it is improved
 
 public:

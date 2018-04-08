@@ -15,7 +15,8 @@ namespace snakelinkedlist {
 enum GameState {
   IN_PROGRESS = 0,
   PAUSED,
-  FINISHED
+  FINISHED,
+  HIGHSCORES
 };
 
 class snakeGame : public ofBaseApp {

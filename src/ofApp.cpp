@@ -35,7 +35,7 @@ void snakeGame::update() {
 			
 			if (game_snake_.isDead()) {
 				current_state_ = FINISHED;
-                
+                addToHighScores(game_snake_.getFoodEaten());
 			}
 		}
 	}
@@ -52,9 +52,12 @@ Draws the current state of the game with the following logic
 void snakeGame::draw(){
 	if(current_state_ == PAUSED) {
 		drawGamePaused();
-	}
+    } else if (current_state_ == HIGHSCORES) {
+        drawHighScores();
+    }
 	else if(current_state_ == FINISHED) {
 		drawGameOver();
+        drawHighScores();
 	}
 	drawFood();
 	drawSnake();
@@ -84,7 +87,9 @@ void snakeGame::keyPressed(int key){
 	if (upper_key == 'P' && current_state_ != FINISHED) {
 		// Pause or unpause
 		current_state_ = (current_state_ == IN_PROGRESS) ? PAUSED : IN_PROGRESS;
-	}
+    } else if (upper_key == 'H' && current_state_ != FINISHED) {
+        current_state_ = (current_state_ == IN_PROGRESS) ? HIGHSCORES : IN_PROGRESS;;
+    }
 	else if (current_state_ == IN_PROGRESS)
 	{
 		SnakeDirection current_direction = game_snake_.getDirection();
@@ -150,8 +155,6 @@ void snakeGame::drawGameOver() {
 	string lose_message = "You Lost! Final Score: " + total_food;
 	ofSetColor(0, 0, 0);
 	ofDrawBitmapString(lose_message, ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
-    
-    
 }
 
 void snakeGame::drawGamePaused() {
@@ -161,9 +164,15 @@ void snakeGame::drawGamePaused() {
 }
 
 void snakeGame::addToHighScores(int score) {
-    high_scores = 0;
+    high_scores.push_back(score);
+    std::sort(high_scores.begin(), high_scores.end());
+    high_scores.erase(high_scores.begin());
 }
 
 void snakeGame::drawHighScores() {
-    
+    ofSetColor(0, 0, 0);
+    ofDrawBitmapString("High Scores:", ofGetWindowWidth() / 2, 20);
+    for (int i = high_scores.size() - 1; i > 0 ;i--) {
+        ofDrawBitmapString(high_scores[i], ofGetWindowWidth() / 2, 20 + 10*(10 - i));
+    }
 }
