@@ -35,6 +35,7 @@ void snakeGame::update() {
 			
 			if (game_snake_.isDead()) {
 				current_state_ = FINISHED;
+                
 			}
 		}
 	}
@@ -149,10 +150,20 @@ void snakeGame::drawGameOver() {
 	string lose_message = "You Lost! Final Score: " + total_food;
 	ofSetColor(0, 0, 0);
 	ofDrawBitmapString(lose_message, ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
+    
+    
 }
 
 void snakeGame::drawGamePaused() {
 	string pause_message = "P to Unpause!";
 	ofSetColor(0, 0, 0);
 	ofDrawBitmapString(pause_message, ofGetWindowWidth() / 2, ofGetWindowHeight() / 2);
+}
+
+void snakeGame::addToHighScores(int score) {
+    high_scores = 0;
+}
+
+void snakeGame::drawHighScores() {
+    
 }

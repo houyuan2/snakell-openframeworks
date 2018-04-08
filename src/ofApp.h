@@ -2,6 +2,8 @@
 #include <ctime>
 #include <cstdlib>
 #include <utility>
+#include <vector>
+#include <algorithm> 
 
 #include "ofMain.h"
 #include "snake.h"
@@ -26,14 +28,19 @@ private:
 									// written, and the relatively low framerate, a bug exists where users can prefire direction 
 									// changes faster than a frame update. Our solution is to force a call to update on direction
 									// changes and then not update on the next frame to prevent the snake from skipping across the screen.
-							
+	
+    std::vector<int> high_scores = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 
 	// Private helper methods to render various aspects of the game on screen.
 	void drawFood(); 
 	void drawSnake();
 	void drawGameOver();
 	void drawGamePaused();
-
+    
+    //deal with high scores
+    void addToHighScores(int score);
+    void drawHighScores();
+    
 	// Resets the game objects to their original state.
 	void reset();
 
