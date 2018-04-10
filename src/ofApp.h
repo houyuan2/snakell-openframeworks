@@ -30,7 +30,7 @@ private:
 									// changes faster than a frame update. Our solution is to force a call to update on direction
 									// changes and then not update on the next frame to prevent the snake from skipping across the screen.
 	
-    std::vector<int> high_scores = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    std::vector<int> high_scores = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; //vector used to score high score records
 
 	// Private helper methods to render various aspects of the game on screen.
 	void drawFood(); 
